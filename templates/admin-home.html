@@ -1,0 +1,47 @@
+{% extends admin-base.html %}
+
+{% block body %}
+<div class="navbar" id="mainnav">
+
+				<div class="navbar-inner">
+					<a href="/box"class="brand"> Zefira Administrador</a>
+					
+					<ul class="nav pull-right">
+				<li id="fat-menu" class="dropdown">
+					<a class="dropdown-toggle" 
+					data-toogle="dropdown"
+					href="#">Account<b class="caret"> </b></a>
+				
+				<ul class="dropdown-menu" role="menu">
+					<li> 
+						<a href="/settings"> Settings </a></li>
+					<li>	<a href="/profile"> Profile </a>
+						</li>
+						<li class="divider">
+						</li>
+						<li> <a href="/logout">Logout </a></li>
+					</ul>
+				</li>
+			</ul>
+			
+				</div>
+</div>
+
+<div class="container">
+	<div class="span10">
+		<h2> Snapshot </h2>
+		<h2> <small> People </small></h2>
+		<p> Users Count : {{ people_count }}</p>
+		<a href="/admin-people" class="btn"> Manage </a>
+		<h2> <small> Companies </small></h2>
+		<p> Users Count : {{ companies_count }}</p>
+		<a href="/admin-companies" class="btn"> Manage </a>
+
+
+
+	</div>	
+</div>  
+
+
+
+{% end %}

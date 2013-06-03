@@ -1,0 +1,87 @@
+{% extends admin-base.html %}
+
+{% block body %}
+<div class="navbar" id="mainnav">
+
+				<div class="navbar-inner">
+					<a href="/admin-home"class="brand"> Zefira Administrador</a>
+					
+					<ul class="nav pull-right">
+				<li id="fat-menu" class="dropdown">
+					<a class="dropdown-toggle" 
+					data-toogle="dropdown"
+					href="#">Account<b class="caret"> </b></a>
+				
+				<ul class="dropdown-menu" role="menu">
+					<li> 
+						<a href="/settings"> Settings </a></li>
+					<li>	<a href="/profile"> Profile </a>
+						</li>
+						<li class="divider">
+						</li>
+						<li> <a href="/logout">Logout </a></li>
+					</ul>
+				</li>
+			</ul>
+			
+				</div>
+</div>
+{% if branch == "people" %}
+<div class="container">
+<form action ="/edit" method="post">
+	<input type="hidden" name="user_id" value= "{{ user_info['_id']}}" /> 
+	<h2><small>First Name </small></h2>
+
+	<input type="text" name="first_name" value="{{ user_info['first-name'] }}" />
+	<h2><small>Last Name </small></h2> 
+	<input type="text" name="last_name" value="{{ user_info['last-name'] }}" />
+	<h2><small>Email</small></h2> 
+	<input type="text" name="email" value="{{ user_info['email'] }}" />
+	<h2><small>Location</small></h2> 
+	<input type="text" name="location" value="{{ user_info['location']['name'] }}" />
+
+	<h2><small>Sex</small></h2> 
+	<select name="sex">
+  							<option value="male">Male</option>
+  							<option value="female">Female</option>
+  						</select></br>
+	<input type="hidden" name="branch" value= "{{ branch }}" /></br>
+	{% raw xsrf_form_html() %}
+	<input type="submit" class="btn btn-primary" value="Save Changes" />
+</div>	
+
+{% end %}
+
+{% if branch == "companies" %}
+<div class="container">
+<form action ="/edit" method="post">
+
+	<input type="hidden" name="user_id" value= "{{ user_info['_id']}}" />
+	<h2><small>Username </small></h2>
+
+	<input type="text" name="username" value="{{ user_info['username'] }}" /> 
+	<h2><small>Name </small></h2>
+
+	<input type="text" name="name" value="{{ user_info['name'] }}" />
+	<h2><small>Description </small></h2> 
+	<textarea name="description"cols="10" rows="6"  >{{ user_info['description']}}</textarea>
+	<h2><small>Email</small></h2> 
+	<input type="text" name="email" value="{{ user_info['email'] }}" />
+	<h2><small>Location</small></h2> 
+	<input type="text" name="location" value="{{ user_info['location']['name'] }}" /></br>
+	<h2><small>Phone</small></h2> 
+	<select name="phone-type">
+  							<option value="male">Land-line</option>
+  							<option value="female">Mobile</option>
+  						</select></br>
+  						<input type="text" name="phone" value="{{ user_info['phone']['number']}}" />
+
+	<input type="hidden" name="branch" value= "{{ branch }}" /></br>
+	{% raw xsrf_form_html() %}
+	<input type="submit" class="btn btn-primary" value="Save Changes" />
+</div>	
+
+{% end %}
+
+
+{% end %}

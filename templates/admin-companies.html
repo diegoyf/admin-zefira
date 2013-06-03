@@ -1,0 +1,106 @@
+{% extends admin-base.html %}
+
+{% block body %}
+<div class="navbar" id="mainnav">
+
+				<div class="navbar-inner">
+					<a href="/admin-home"class="brand"> Zefira Administrador</a>
+					
+					<ul class="nav pull-right">
+				<li id="fat-menu" class="dropdown">
+					<a class="dropdown-toggle" 
+					data-toogle="dropdown"
+					href="#">Account<b class="caret"> </b></a>
+				
+				<ul class="dropdown-menu" role="menu">
+					<li> 
+						<a href="/settings"> Settings </a></li>
+					<li>	<a href="/profile"> Profile </a>
+						</li>
+						<li class="divider">
+						</li>
+						<li> <a href="/logout">Logout </a></li>
+					</ul>
+				</li>
+			</ul>
+			
+				</div>
+</div>
+
+<div class="container">
+	<div class="span12">
+		<h2> Companies</h2> 
+		
+			<a href="#createModal" role="button" class="btn btn-primary"
+			data-toggle="modal"> Create Company User </a>   
+			<div id="createModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  					<div class="modal-header " style="text-align:center;">
+    					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    					<h3 id="myModalLabel">Crear Empresa</h3>
+  					</div>
+  					<div class="modal-body" style="text-align:center;">
+    					<form action="/create-user" method="post" >
+  						{% raw xsrf_form_html() %}
+
+  						<input class="modal-create" name="username" type="text" placeholder="Username" /></br>
+  						<input class="modal-create" name="email" type="text" placeholder="E-mail" />
+  						</br>
+  						<input name="name" type="text" placeholder= "Nombre Empresa" /></br>
+  						<textarea name="description"cols="10" rows="6"  placeholder="Descripcion Empresa"></textarea> </br>
+  						<input name="location" type="text" placeholder="City"/>
+  						<h2><small>Phone</small></h2> 
+						<select name="phone-type">
+  							<option value="male">Land-line</option>
+  							<option value="female">Mobile</option>
+  						</select></br>
+  						<input type="text" name="phone-number" placeholder="Phone-Number" />
+  						<input type="hidden" name="branch" value="companies" />
+
+  						
+  					</div>	
+  					
+  					<div class="modal-footer">
+    					<button class="btn btn-primary " type="submit">Publicar</button>
+    					</form>
+  					</div>
+  					 
+ 						
+					
+	
+			</div>	
+			</br>
+			<h2><small>Users</small></h2></br>
+			<div class="span1">
+				<p> Id </p> 
+			</div>	
+			<div class="span2">
+				<p> Email</p> 
+			</div>
+			<div class="span1">
+				<p> Name</p> 
+			</div>
+			<div class="span1">
+				<p> Description</p> 
+			</div>
+
+			{% if not users %}
+					
+					</br> 
+				</br>
+					<div class="span4">
+					<h2><p><small> No hay Empresas registradas </small></h2>
+					</div>
+			{% end %}
+					
+			{% if users %}	
+				{% for user in users %}
+					{{ modules.UserCo(user) }}
+				{% end %}
+    		{% end %}
+							
+	</div>
+</div>
+
+
+
+{% end %}

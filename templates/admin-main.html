@@ -1,0 +1,37 @@
+{% extends admin-base.html %}
+
+{% block body %}
+
+<div class="navbar" id="mainbar">
+
+		<div class="navbar-inner" id="mainnavbar">
+			<a class="brand" id="logo" href="#"> ZEFIRA</a>
+		</div>
+	</div>
+<div class="container">
+
+  <div class="row">	
+  <h1 class="text-center"> {{ header_text }} </br> 
+  	<small>Administrative Section</small></h1>
+  </div>
+  <div class="presentation">
+  	
+  	</div>
+  <div class="centre">
+  </br></br>
+  <form action="/" method="post" >
+<input type="text" name="email" placeholder="Email"/></br>
+<input type="password" name="password" placeholder="Password"/></br>
+<input class="btn btn-primary" type="submit" value="Loggear" />
+{% raw xsrf_form_html() %}
+</form>
+  
+  
+  </div>
+</div>
+
+
+
+
+
+{% end %}

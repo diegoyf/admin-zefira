@@ -1,0 +1,102 @@
+{% extends admin-base.html %}
+
+{% block body %}
+<div class="navbar" id="mainnav">
+
+				<div class="navbar-inner">
+					<a href="/admin-home"class="brand"> Zefira Administrador</a>
+					
+					<ul class="nav pull-right">
+				<li id="fat-menu" class="dropdown">
+					<a class="dropdown-toggle" 
+					data-toogle="dropdown"
+					href="#">Account<b class="caret"> </b></a>
+				
+				<ul class="dropdown-menu" role="menu">
+					<li> 
+						<a href="/settings"> Settings </a></li>
+					<li>	<a href="/profile"> Profile </a>
+						</li>
+						<li class="divider">
+						</li>
+						<li> <a href="/logout">Logout </a></li>
+					</ul>
+				</li>
+			</ul>
+			
+				</div>
+</div>
+
+<div class="container">
+	<div class="span12">
+		<h2> People </h2> 
+		
+			<a href="#createModal" role="button" class="btn btn-primary"
+			data-toggle="modal"> Create People User </a>   
+			<div id="createModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  					<div class="modal-header " style="text-align:center;">
+    					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    					<h3 id="myModalLabel">Crear Cliente</h3>
+  					</div>
+  					<div class="modal-body" style="text-align:center;">
+    					<form action="/create-user" method="post" >
+  						{% raw xsrf_form_html() %}
+  						<input class="modal-create" name="email" type="text" placeholder="E-mail" />
+  						</br>
+  						<input name="first-name" type="text" placeholder= "Nombre" /></br>
+  						<input name="last-name" type="text" placehoolder="Apellido" placeholder="Apellido" /></br>
+  						<h2><small>Sex </small></h2>
+  						<select name="sex">
+  							<option value="male">Male</option>
+  							<option value="female">Female</option>
+  						</select></br>
+  						<input name="location" type="text" placeholder="City"/>
+  						<input type="hidden" name="branch" value="people" />
+
+  						
+  					</div>	
+  					
+  					<div class="modal-footer">
+    					<button class="btn btn-primary " type="submit">Publicar</button>
+    					</form>
+  					</div>
+  					 
+ 						
+					
+	
+			</div>	
+			</br>
+			<h2><small>Users</small></h2></br>
+			<div class="span1">
+				<p> Id </p> 
+			</div>	
+			<div class="span1">
+				<p> Email</p> 
+			</div>
+			<div class="span1">
+				<p> First Name</p> 
+			</div>
+			<div class="span1">
+				<p> Last Name</p> 
+			</div>
+
+			{% if not users %}
+					
+					</br> 
+				</br>
+					<div class="span4">
+					<h2><p><small> No hay clientes registrados </small></h2>
+					</div>
+			{% end %}
+					
+			{% if users %}	
+				{% for user in users %}
+					{{ modules.User(user) }}
+				{% end %}
+    		{% end %}
+							
+	</div>
+</div>
+
+
+{% end %}

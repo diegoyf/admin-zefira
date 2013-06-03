@@ -1,0 +1,39 @@
+
+</br>
+</br>
+<div id="users"> 
+ 
+<div class="span1">
+				<p> {{ user['_id'] }}</p> 
+			</div>	
+			<div class="span2">
+				<p> {{ user['email'] }}</p> 
+			</div>
+			<div class="span1">
+				<p> {{ user['name']}}</p> 
+			</div>
+			<div class="span2">
+				<p> {{ user['description']}}</p> 
+			</div>
+
+			
+
+<div class="span1">
+	<form action="/edit" method="get">
+		<input type="hidden" name="user_id"  value="{{ user['_id'] }}"/>
+		<input type="hidden" name="branch" value="{{ user['branch'] }}"/>
+		<input type="submit" class="btn" value="Edit" />
+	</form>	
+</div>
+<div class="span1">	 
+	<form action="/delete" method="get">
+		<input type="submit" class="btn" value="Delete" />
+		<input type="hidden" name="user_id"  value="{{ user['_id'] }}"/>
+		<input type="hidden" name="branch" value="{{ user['branch'] }}"/>
+
+	</form>	
+</div>	
+			
+
+</div>	
+</br>	
